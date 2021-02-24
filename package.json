@@ -1,6 +1,7 @@
 {
   "name": "owl",
-  "version": "0.0.0",
+  "description": "alternative GIT hook - MIT licensed.",
+  "version": "1.0.0-0",
   "license": "MIT",
   "bin": {
     "owl": "src/index.js"
@@ -13,13 +14,15 @@
     "url": "https://github.com/bbortt/owl/issues"
   },
   "files": [
-    "/lib"
+    "/lib",
+    "LICENSE",
+    "package.json"
   ],
   "scripts": {
     "postinstall": "node src install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
-    "prettier": "prettier {,src/**/*}.{js,json}",
+    "prettier": "prettier {,src/**/*}.{js,json,md}",
     "prettier:fix": "npm run prettier -- -w"
   },
   "devDependencies": {
@@ -30,5 +33,10 @@
   },
   "engines": {
     "node": ">= 14"
-  }
+  },
+  "keywords": [
+    "git",
+    "hook",
+    "hooks"
+  ]
 }

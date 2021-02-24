@@ -1,5 +1,7 @@
 {
   "hooks": {
-    "preCommit": ["npx pretty-quick --staged"]
+    "preCommit": [
+      "npx pretty-quick --staged"
+    ]
   }
 }
