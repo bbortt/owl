@@ -1,5 +1,5 @@
 {
-  "name": "owl",
+  "name": "@bbortt/owl",
   "description": "alternative GIT hook - MIT licensed.",
   "version": "1.0.0-0",
   "license": "MIT",
@@ -19,7 +19,7 @@
     "package.json"
   ],
   "scripts": {
-    "postinstall": "node src install",
+    "_postinstall": "node src install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "prettier": "prettier {,src/**/*}.{js,json,md}",

@@ -18,6 +18,8 @@ Add hooks using the `owl add` command (`help` for help). Example:
 owl add pre-commit "npx pretty-quick --staged"
 ```
 
+See [CLI](#cli) for more information.
+
 # Supported hooks
 
 - `pre-commit`
@@ -26,7 +28,7 @@ More to come.
 
 # CLI
 
-> // TODO
+> // TODO: Add documentation
 
 # License
 
