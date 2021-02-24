@@ -19,7 +19,7 @@
     "package.json"
   ],
   "scripts": {
-    "_postinstall": "node src install",
+    "postinstall": "node src install",
     "prepublishOnly": "pinst --disable",
     "postpublish": "pinst --enable",
     "prettier": "prettier {,src/**/*}.{js,json,md}",
