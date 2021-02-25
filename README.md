@@ -15,32 +15,41 @@
 
 # Installation
 
-## Automated
+Once downloaded you need to install the binary and initialize the configuration. Follow the steps below, and you will be
+good to go in seconds!
+
+## Scripts
+
+### Automated
 
 Add `@bbortt/owl` and `@bbortt/owl-autoinstall` at the same time. The `postinstall` script in the second package will
-take care of the setup.
+take care of installing the scripts in `.owl`.
 
-## Manual
+### Manual
 
-Install `@bbortt/owl` via `npm` or `yarn`. Execute the installation script to initialize the folder structure:
+Install `@bbortt/owl` via `npm` or `yarn` and execute the installation script to initialize the folder structure:
 
 ```shell
 owl install
 ```
 
-Add hooks using the `owl add` command (`help` for help). Example:
+## Initialization
+
+You can create a compatible rc file by hand or via `owl init` (see the [documentation](#init)). Add hooks using
+the `owl add` command (`help` for help), or by hand too. Example:
 
 ```shell
 owl add pre-commit "npx pretty-quick --staged"
 ```
 
-See [CLI](#cli) for more information.
+Take a look at [configuration files](#configuration-files) or the [CLI documentation](#cli) for more information.
 
 # Configuration files
 
-In order to support multiple commands in the same hook this project uses a configuration file. \
-This does make it possible to configure hooks without using the CLI
-too. [An example](https://github.com/bbortt/owl/blob/release/.owl/.owlrc.json):
+In order to support multiple commands in the same hook this project reads configuration files
+via [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig). \
+This does make it possible to configure hooks without using the [CLI](#cli)
+too. [An example](https://github.com/bbortt/owl/blob/release/.owlrc.json):
 
 ```json
 {
@@ -58,7 +67,29 @@ More to come in #1.
 
 # CLI
 
-> // TODO: Add documentation
+The following commands are accessible through the cli `owl`:
+
+## `install`
+
+Signature: `owl install [folder]`.
+
+Installs the binary into `.owl`. **Careful:** Do not manually update the generated files. They will be overwritten by
+any subsequent calls of this command (for example in a `postinstall` script).
+
+## `init`
+
+Signature: `owl add init`.
+
+Initializes a configuration file called `.owlrc.json` in the root directory. It does not contain any hooks.
+
+## `add`
+
+Signature: `owl add [HOOK-TYPE] [HOOK]`.
+
+Adds a hook by type into any found configuration file. E.g.
+the [`.owlrc.json`](https://github.com/bbortt/owl/blob/release/.owlrc.json) was completed
+using `owl add pre-commit "ngx pretty-quick --staged"`. \
+Supported hooks are: [ `pre-commit` ].
 
 # License
 

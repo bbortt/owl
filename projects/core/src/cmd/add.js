@@ -2,6 +2,9 @@ const { chmodSync, existsSync, writeFileSync } = require('fs');
 const { resolve } = require('path');
 const { spawnSync } = require('child_process');
 
+const { cosmiconfigSync } = require('cosmiconfig');
+const cosmiconfig = cosmiconfigSync('owl').search();
+
 const { DEFAULT_ENCODING } = require('../common/constants');
 
 const supportedHooks = ['pre-commit'];
@@ -34,9 +37,6 @@ const addHook = (hooks, hookType, command) => {
 };
 
 module.exports = args => {
-  const { cosmiconfigSync } = require('cosmiconfig');
-  const cosmiconfig = cosmiconfigSync('owl').search();
-
   if (!cosmiconfig) {
     throw new Error("owl - cannot find any configuration, did you run 'init'?");
   }
