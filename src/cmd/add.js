@@ -28,9 +28,9 @@ done
   chmodSync(hookFile, 0o0755);
 };
 
-const addHookPreCommit = (hooks, command) => {
-  hooks.preCommit = hooks.preCommit || [];
-  hooks.preCommit.push(command.replace(/"/g, "'"));
+const addHook = (hooks, hookType, command) => {
+  hooks[hookType] = hooks[hookType] || [];
+  hooks[hookType].push(command.replace(/"/g, "'"));
   return hooks;
 };
 
@@ -46,7 +46,7 @@ module.exports = args => {
     const hookType = args[0];
     switch (hookType) {
       case 'pre-commit':
-        addHookPreCommit(config.hooks, args[1]);
+        addHook(config.hooks, hookType, args[1]);
         ensureGitHookInstalled(hooksDir, hookType);
         break;
       default:
