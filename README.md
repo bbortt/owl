@@ -11,6 +11,7 @@
 [![@bbortt/owl](https://img.shields.io/npm/v/@bbortt/owl?label=@bbortt/owl)](https://www.npmjs.com/package/@bbortt/owl)
 [![Blazing Fast](https://img.shields.io/badge/speed-blazing%20%F0%9F%94%A5-brightgreen.svg)](https://twitter.com/acdlite/status/974390255393505280)
 [![License](https://img.shields.io/github/license/bbortt/owl)](https://github/bbortt/owl/blob/release/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbbortt%2Fowl.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbbortt%2Fowl?ref=badge_shield)
 
 # Installation
 
@@ -63,3 +64,6 @@ More to come in #1.
 # License
 
 This project is licensed under the terms of the [MIT license](https://github/bbortt/owl/blob/release/LICENSE).
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbbortt%2Fowl.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbbortt%2Fowl?ref=badge_large)
