@@ -19,6 +19,6 @@ switch (cmd) {
     help();
     break;
   default:
-    console.error('unknown command!');
+    console.error('owl - unknown command!');
     help();
 }

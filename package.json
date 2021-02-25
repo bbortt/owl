@@ -27,5 +27,8 @@
     "git",
     "hook",
     "hooks"
-  ]
+  ],
+  "dependencies": {
+    "cosmiconfig": "^7.0.0"
+  }
 }
