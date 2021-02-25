@@ -14,17 +14,17 @@
  * copies or substantial portions of the Software.
  */
 
-const { readFileSync } = require('fs');
-const { resolve } = require('path');
-const { spawnSync } = require('child_process');
+const { cosmiconfigSync } = require('cosmiconfig');
+const cosmiconfig = cosmiconfigSync('owl').search();
+
+if (!cosmiconfig) {
+  console.error('owl - cannot find any configuration, skipping!');
+  return;
+}
 
 const [, , cmd, ...args] = process.argv;
 
-const hooksDir = String(
-  spawnSync('git', ['config', 'core.hooksPath'], { stdio: 'pipe' }).stdout,
-).trim();
-const configFile = resolve(hooksDir, '.owlrc.json');
-const config = JSON.parse(readFileSync(configFile, 'utf-8'));
+const { config } = cosmiconfig;
 config.hooks = config.hooks || {};
 
 const printHooks = (hooks, hookType, separator) =>
@@ -35,5 +35,5 @@ switch (cmd) {
     printHooks(config.hooks, cmd, args[0]);
     break;
   default:
-    throw new Error(`invalid hook configuration`);
+    throw new Error(`owl - invalid hook configuration`);
 }

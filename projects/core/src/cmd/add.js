@@ -1,15 +1,17 @@
-const { chmodSync, existsSync, readFileSync, writeFileSync } = require('fs');
+const { chmodSync, existsSync, writeFileSync } = require('fs');
 const { resolve } = require('path');
 const { spawnSync } = require('child_process');
 
-const { DEFAULT_ENCODING, OWL_RC_FILE_NAME } = require('../common/constants');
+const { cosmiconfigSync } = require('cosmiconfig');
+const cosmiconfig = cosmiconfigSync('owl').search();
+
+const { DEFAULT_ENCODING } = require('../common/constants');
 
 const supportedHooks = ['pre-commit'];
 
 const ensureGitHookInstalled = (hooksDir, hookType) => {
   const hookFile = resolve(hooksDir, hookType);
   if (existsSync(hookFile)) {
-    // TODO: Maybe debug log?
     console.log(
       `owl - hook file for '${hookType}' already exists, skip linking`,
     );
@@ -35,11 +37,21 @@ const addHook = (hooks, hookType, command) => {
 };
 
 module.exports = args => {
+  if (!cosmiconfig) {
+    throw new Error("owl - cannot find any configuration, did you run 'init'?");
+  }
+
   const hooksDir = String(
     spawnSync('git', ['config', 'core.hooksPath'], { stdio: 'pipe' }).stdout,
   ).trim();
-  const configFile = resolve(hooksDir, OWL_RC_FILE_NAME);
-  const config = JSON.parse(readFileSync(configFile, DEFAULT_ENCODING));
+
+  if (!hooksDir) {
+    throw new Error(
+      "owl - git has no 'core.hooksPath' configured, did you run 'install'?",
+    );
+  }
+
+  const { config, filepath } = cosmiconfig;
   config.hooks = config.hooks || {};
 
   try {
@@ -51,12 +63,12 @@ module.exports = args => {
         break;
       default:
         throw new Error(
-          `invalid hook type '${hookType}'! supported are: ${supportedHooks.join()}`,
+          `owl - invalid hook type '${hookType}'! supported are: ${supportedHooks.join()}`,
         );
     }
 
     writeFileSync(
-      configFile,
+      filepath,
       `${JSON.stringify(config, null, 2)}\n`,
       DEFAULT_ENCODING,
     );

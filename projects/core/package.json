@@ -1,11 +1,16 @@
 {
   "name": "@bbortt/owl",
   "description": "alternative GIT hook - MIT licensed.",
-  "version": "1.0.0-1",
+  "version": "1.0.0-2",
   "license": "MIT",
   "bin": {
     "owl": "src/index.js"
   },
+  "files": [
+    "src",
+    "LICENSE",
+    "package.json"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/bbortt/owl.git"
@@ -13,13 +18,11 @@
   "bugs": {
     "url": "https://github.com/bbortt/owl/issues"
   },
-  "files": [
-    "src",
-    "LICENSE",
-    "package.json"
-  ],
+  "dependencies": {
+    "cosmiconfig": "^7.0.0"
+  },
   "engines": {
-    "node": ">= 14"
+    "node": ">= 12"
   },
   "keywords": [
     "git",

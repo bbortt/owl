@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 const add = require('./cmd/add');
+const init = require('./cmd/init');
 const install = require('./cmd/install');
 
 const [, , cmd, ...args] = process.argv;
@@ -12,6 +13,9 @@ switch (cmd) {
   case 'install':
     install(args[0]);
     break;
+  case 'init':
+    init();
+    break;
   case 'add':
     add(args.slice(0, args.length));
     break;
@@ -19,6 +23,6 @@ switch (cmd) {
     help();
     break;
   default:
-    console.error('unknown command!');
+    console.error('owl - unknown command!');
     help();
 }

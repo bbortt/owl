@@ -2,11 +2,11 @@
 
 **! Note: This project is a draft which I quickly created while in school. Sorry to my teachers :) !**
 
-> alternative GIT hook - MIT licensed.
+> pure JS GIT hook library
 
-- Like `husky`, without the lobbyism part.
-- Purely written in JS.
-- Better support for monorepos through [configuration file](#the-configuration-file).
+&plus; MIT Licensed. \
+&plus; Configuration as code: Stored in readable JSON format. \
+&plus; Written in pure JS.
 
 [![@bbortt/owl](https://img.shields.io/npm/v/@bbortt/owl?label=@bbortt/owl)](https://www.npmjs.com/package/@bbortt/owl)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbbortt%2Fowl.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbbortt%2Fowl?ref=badge_shield)
@@ -15,38 +15,46 @@
 
 # Installation
 
-## Automated
+Once downloaded you need to install the binary and initialize the configuration. Follow the steps below, and you will be
+good to go in seconds!
+
+## Scripts
+
+### Automated
 
 Add `@bbortt/owl` and `@bbortt/owl-autoinstall` at the same time. The `postinstall` script in the second package will
-take care of the setup.
+take care of installing the scripts in `.owl`.
 
-## Manual
+### Manual
 
-Install `@bbortt/owl` via `npm` or `yarn`. Execute the installation script to initialize the folder structure:
+Install `@bbortt/owl` via `npm` or `yarn` and execute the installation script to initialize the folder structure:
 
 ```shell
 owl install
 ```
 
-Add hooks using the `owl add` command (`help` for help). Example:
+## Initialization
+
+You can create a compatible rc file by hand or via `owl init` (see the [documentation](#init)). Add hooks using
+the `owl add` command (`help` for help), or by hand too. Example:
 
 ```shell
 owl add pre-commit "npx pretty-quick --staged"
 ```
 
-See [CLI](#cli) for more information.
+Take a look at [configuration files](#configuration-files) or the [CLI documentation](#cli) for more information.
 
-# The configuration file
+# Configuration files
 
-In order to support multiple commands on the same hook this project uses a configuration file. It stores information in
-a readable JSON format and will be parsed at runtime. This does make it possible to configure hooks without using the
-CLI too. [An example](https://github.com/bbortt/owl/blob/release/.owl/.owlrc.json):
+In order to support multiple commands in the same hook this project reads configuration files
+via [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig). \
+This does make it possible to configure hooks without using the [CLI](#cli)
+too. [An example](https://github.com/bbortt/owl/blob/release/.owlrc.json):
 
 ```json
 {
   "hooks": {
     "pre-commit": ["npx pretty-quick --staged"]
-    // Add more hooks here or through CLI
   }
 }
 ```
@@ -59,7 +67,29 @@ More to come in #1.
 
 # CLI
 
-> // TODO: Add documentation
+The following commands are accessible through the cli `owl`:
+
+## `install`
+
+Signature: `owl install [folder]`.
+
+Installs the binary into `.owl`. **Careful:** Do not manually update the generated files. They will be overwritten by
+any subsequent calls of this command (for example in a `postinstall` script).
+
+## `init`
+
+Signature: `owl add init`.
+
+Initializes a configuration file called `.owlrc.json` in the root directory. It does not contain any hooks.
+
+## `add`
+
+Signature: `owl add [HOOK-TYPE] [HOOK]`.
+
+Adds a hook by type into any found configuration file. E.g.
+the [`.owlrc.json`](https://github.com/bbortt/owl/blob/release/.owlrc.json) was completed
+using `owl add pre-commit "ngx pretty-quick --staged"`. \
+Supported hooks are: [ `pre-commit` ].
 
 # License
 
