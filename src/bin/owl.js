@@ -32,7 +32,7 @@ const printHooks = (hooks, hookType, separator) =>
 
 switch (cmd) {
   case 'pre-commit':
-    printHooks(config.hooks, 'preCommit', args[0]);
+    printHooks(config.hooks, cmd, args[0]);
     break;
   default:
     throw new Error(`invalid hook configuration`);

@@ -14,7 +14,7 @@
     "url": "https://github.com/bbortt/owl/issues"
   },
   "files": [
-    "/lib",
+    "/src",
     "LICENSE",
     "package.json"
   ],
