@@ -4,29 +4,28 @@ const { spawnSync } = require('child_process');
 
 const { DEFAULT_ENCODING } = require('../common/constants');
 
-module.exports = (dir = '.owl') => {
+module.exports = (dir = '.owl', args = []) => {
+  const force = args.includes('--force')
+
   if (spawnSync('git', ['rev-parse']).status !== 0) {
     console.error('owl - not in git repository!');
     return;
   }
 
-  if (!resolve(process.cwd(), dir).startsWith(process.cwd())) {
+  const fullPath = resolve(process.cwd(), dir);
+  if (!fullPath.startsWith(process.cwd()) && !force) {
     throw new Error('owl - trying to install outside repository!');
   }
 
-  if (!existsSync(resolve(process.cwd(), '.git'))) {
-    throw new Error('owl - .git directory not found!');
-  }
-
   try {
-    if (!existsSync(dir)) {
-      mkdirSync(dir);
+    if (!existsSync(fullPath)) {
+      mkdirSync(fullPath);
     }
 
-    copyFileSync(resolve(__dirname, '../bin/owl.js'), resolve(dir, 'owl.js'));
-    writeFileSync(resolve(dir, '.gitignore'), 'owl.js\n', DEFAULT_ENCODING);
+    copyFileSync(resolve(__dirname, '../bin/owl.js'), resolve(fullPath, 'owl.js'));
+    writeFileSync(resolve(fullPath, '.gitignore'), 'owl.js\n', DEFAULT_ENCODING);
 
-    const { error } = spawnSync('git', ['config', 'core.hooksPath', dir]);
+    const { error } = spawnSync('git', ['config', 'core.hooksPath', fullPath]);
     if (error) {
       throw error;
     }

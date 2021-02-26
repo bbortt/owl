@@ -2,9 +2,9 @@
 
 > GIT hooks made easy.
 
-&plus; MIT Licensed. \
+&plus; Written in pure JS. \
 &plus; Configuration as code: Stored in readable JSON format. \
-&plus; Written in pure JS.
+&plus; MIT Licensed.
 
 [![@bbortt/owl](https://img.shields.io/npm/v/@bbortt/owl?label=@bbortt/owl)](https://www.npmjs.com/package/@bbortt/owl)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbbortt%2Fowl.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbbortt%2Fowl?ref=badge_shield)
