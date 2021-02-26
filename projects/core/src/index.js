@@ -11,13 +11,13 @@ const help = () => {
 
 switch (cmd) {
   case 'install':
-    install(args[0]);
+    install(args[0], args.slice(1, args.length));
     break;
   case 'init':
     init();
     break;
   case 'add':
-    add(args.slice(0, args.length));
+    add(args);
     break;
   case 'help':
     help();
