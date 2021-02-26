@@ -1,6 +1,6 @@
 {
   "name": "owl",
-  "description": "alternative GIT hook - MIT licensed.",
+  "description": "GIT hooks made easy.",
   "version": "0.0.0",
   "license": "MIT",
   "repository": {

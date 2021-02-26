@@ -1,8 +1,6 @@
-# OWL
+# 🦉 OWL
 
-**! Note: This project is a draft which I quickly created while in school. Sorry to my teachers :) !**
-
-> pure JS GIT hook library
+> GIT hooks made easy.
 
 &plus; MIT Licensed. \
 &plus; Configuration as code: Stored in readable JSON format. \
@@ -13,10 +11,18 @@
 [![Blazing Fast](https://img.shields.io/badge/speed-blazing%20%F0%9F%94%A5-brightgreen.svg)](https://twitter.com/acdlite/status/974390255393505280)
 [![License](https://img.shields.io/github/license/bbortt/owl)](https://github/bbortt/owl/blob/release/LICENSE)
 
+**Table Of Contents**
+
+- [Installation](#installation)
+- [Configuration Files](#configuration-files)
+- [CLI](#cli)
+- [How Does It Work?](#how-does-it-work)
+- [License](#license)
+
 # Installation
 
-Once downloaded you need to install the binary and initialize the configuration. Follow the steps below, and you will be
-good to go in seconds!
+Once downloaded you need to initialize the hook and create a configuration. Follow the steps below, and you will be good
+to go in seconds!
 
 ## Scripts
 
@@ -27,7 +33,7 @@ take care of installing the scripts in `.owl`.
 
 ### Manual
 
-Install `@bbortt/owl` via `npm` or `yarn` and execute the installation script to initialize the folder structure:
+Add `@bbortt/owl` via `npm` or `yarn` and execute the installation command in order to set up the hooks:
 
 ```shell
 owl install
@@ -44,12 +50,13 @@ owl add pre-commit "npx pretty-quick --staged"
 
 Take a look at [configuration files](#configuration-files) or the [CLI documentation](#cli) for more information.
 
-# Configuration files
+# Configuration Files
 
-In order to support multiple commands in the same hook this project reads configuration files
-via [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig). \
+In order to support multiple commands in the same hook this project reads configuration
+via [`cosmiconfig`](https://github.com/davidtheclark/cosmiconfig). Valid files are for example `package.json`
+, `.owlrc.json` or other compatible rc files. \
 This does make it possible to configure hooks without using the [CLI](#cli)
-too. [An example](https://github.com/bbortt/owl/blob/release/.owlrc.json):
+too. An example [`.owlrc.json`](https://github.com/bbortt/owl/blob/release/.owlrc.json):
 
 ```json
 {
@@ -59,15 +66,15 @@ too. [An example](https://github.com/bbortt/owl/blob/release/.owlrc.json):
 }
 ```
 
-## Supported hooks
+## Supported Hooks
 
 - `pre-commit`
 
-More to come in #1.
+More to come in [#1](https://github.com/bbortt/owl/issues/1).
 
 # CLI
 
-The following commands are accessible through the cli `owl`:
+The following commands are executable through the cli `owl`:
 
 ## `install`
 
@@ -90,6 +97,10 @@ Adds a hook by type into any found configuration file. E.g.
 the [`.owlrc.json`](https://github.com/bbortt/owl/blob/release/.owlrc.json) was completed
 using `owl add pre-commit "ngx pretty-quick --staged"`. \
 Supported hooks are: [ `pre-commit` ].
+
+# How Does It Work?
+
+> It really is no magic! To be documented.
 
 # License
 

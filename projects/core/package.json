@@ -1,6 +1,6 @@
 {
   "name": "@bbortt/owl",
-  "description": "alternative GIT hook - MIT licensed.",
+  "description": "GIT hooks made easy.",
   "version": "1.0.0-2",
   "license": "MIT",
   "bin": {
