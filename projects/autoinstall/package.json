@@ -1,7 +1,7 @@
 {
   "name": "@bbortt/owl-autoinstall",
   "description": "@bbortt/owl GIT hook autoinstall.",
-  "version": "1.0.0-3",
+  "version": "1.0.0-4",
   "license": "MIT",
   "scripts": {
     "postinstall": "owl install ../../../.owl --force"
@@ -18,7 +18,7 @@
     "url": "https://github.com/bbortt/owl/issues"
   },
   "peerDependencies": {
-    "@bbortt/owl": "1.0.0-3"
+    "@bbortt/owl": "1.0.0-4"
   },
   "keywords": [
     "git",
