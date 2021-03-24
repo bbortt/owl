@@ -11,7 +11,7 @@ const help = () => {
 Usage: owl [COMMAND] args..
 \tinstall [dir=.owl]
 \t\tinstall 'owl.js' binary.
-\t\t--force\toverride of existing.
+\t\t--force\tinstall outside process directory.
 \tinit
 \t\tinitialize valid '.owlrc.json'.
 \tadd [TYPE] [COMMAND]

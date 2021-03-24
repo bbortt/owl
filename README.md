@@ -7,9 +7,9 @@
 &plus; MIT Licensed.
 
 [![@bbortt/owl](https://img.shields.io/npm/v/@bbortt/owl?label=@bbortt/owl)](https://www.npmjs.com/package/@bbortt/owl)
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbbortt%2Fowl.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbbortt%2Fowl?ref=badge_shield)
 [![Blazing Fast](https://img.shields.io/badge/speed-blazing%20%F0%9F%94%A5-brightgreen.svg)](https://twitter.com/acdlite/status/974390255393505280)
 [![License](https://img.shields.io/github/license/bbortt/owl)](https://github/bbortt/owl/blob/release/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fbbortt%2Fowl.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fbbortt%2Fowl?ref=badge_shield)
 
 **Table Of Contents**
 
@@ -74,29 +74,33 @@ More to come in [#1](https://github.com/bbortt/owl/issues/1).
 
 # CLI
 
-The following commands are executable through the cli `owl`:
+The following commands are executable through the cli `owl [COMMAND] args..`:
 
 ## `install`
 
-Signature: `owl install [folder]`.
+Signature: `owl install [dir=.owl]`. \
+Arguments:
+
+- `--force` install outside process directory (useful for multi module projects).
 
 Installs the binary into `.owl`. **Careful:** Do not manually update the generated files. They will be overwritten by
 any subsequent calls of this command (for example in a `postinstall` script).
 
 ## `init`
 
-Signature: `owl add init`.
+Signature: `owl init`.
 
 Initializes a configuration file called `.owlrc.json` in the root directory. It does not contain any hooks.
 
 ## `add`
 
-Signature: `owl add [HOOK-TYPE] [HOOK]`.
+Signature: `owl add [TYPE] [COMMAND]`.
 
 Adds a hook by type into any found configuration file. E.g.
 the [`.owlrc.json`](https://github.com/bbortt/owl/blob/release/.owlrc.json) was completed
-using `owl add pre-commit "ngx pretty-quick --staged"`. \
-Supported hooks are: [ `pre-commit` ].
+using `owl add pre-commit "ngx pretty-quick --staged"`.
+
+Supported hooks are: [ `applypatch-msg`, `commit-msg`, `fsmonitor-watchman`, `post-update`, `pre-applypatch`, `pre-commit`, `pre-merge-commit`, `pre-push`, `pre-rebase`, `pre-receive`, `prepare-commit-msg`, `update` ].
 
 # How Does It Work?
 
