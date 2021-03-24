@@ -7,7 +7,20 @@ const cosmiconfig = cosmiconfigSync('owl').search();
 
 const { DEFAULT_ENCODING } = require('../common/constants');
 
-const supportedHooks = ['pre-commit'];
+const supportedHooks = [
+  'applypatch-msg',
+  'commit-msg',
+  'fsmonitor-watchman',
+  'post-update',
+  'pre-applypatch',
+  'pre-commit',
+  'pre-merge-commit',
+  'pre-push',
+  'pre-rebase',
+  'pre-receive',
+  'prepare-commit-msg',
+  'update',
+];
 
 const ensureGitHookInstalled = (hooksDir, hookType) => {
   const hookFile = resolve(hooksDir, hookType);
@@ -37,6 +50,12 @@ const addHook = (hooks, hookType, command) => {
 };
 
 module.exports = args => {
+  if (args.length < 2) {
+    throw new Error(
+      `owl - invalid 'add' command. usage is: owl add [TYPE] [COMMAND]`,
+    );
+  }
+
   if (!cosmiconfig) {
     throw new Error("owl - cannot find any configuration, did you run 'init'?");
   }
@@ -56,15 +75,13 @@ module.exports = args => {
 
   try {
     const hookType = args[0];
-    switch (hookType) {
-      case 'pre-commit':
-        addHook(config.hooks, hookType, args[1]);
-        ensureGitHookInstalled(hooksDir, hookType);
-        break;
-      default:
-        throw new Error(
-          `owl - invalid hook type '${hookType}'! supported are: ${supportedHooks.join()}`,
-        );
+    if (supportedHooks.includes(hookType)) {
+      addHook(config.hooks, hookType, args[1]);
+      ensureGitHookInstalled(hooksDir, hookType);
+    } else {
+      throw new Error(
+        `owl - invalid hook type '${hookType}'! supported are: ${supportedHooks.join()}`,
+      );
     }
 
     writeFileSync(

@@ -6,7 +6,18 @@ const install = require('./cmd/install');
 const [, , cmd, ...args] = process.argv;
 
 const help = () => {
-  // TODO: Print something useful
+  console.log(`
+🦉 OWL - GIT hooks made easy.
+Usage: owl [COMMAND] args..
+\tinstall [dir=.owl]
+\t\tinstall 'owl.js' binary.
+\t\t--force\tinstall outside process directory.
+\tinit
+\t\tinitialize valid '.owlrc.json'.
+\tadd [TYPE] [COMMAND]
+\t\tadd a hook.
+\thelp
+\t\tprint this help.`);
 };
 
 switch (cmd) {
@@ -23,6 +34,6 @@ switch (cmd) {
     help();
     break;
   default:
-    console.error('owl - unknown command!');
+    console.error(`owl - unknown command: try 'help'!`);
     help();
 }
