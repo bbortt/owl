@@ -31,7 +31,7 @@ const ensureGitHookInstalled = (hooksDir, hookType) => {
     return;
   }
 
-  const hookArg = `#!/usr/bin/env sh
+  const hookArg = `#!/usr/bin/env bash
 
 IFS=',' read -r -a array <<< $(node $(dirname "$0")/owl.js ${hookType} $IFS)
 for i in "\${array[@]}"; do
