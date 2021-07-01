@@ -1,7 +1,7 @@
 {
   "name": "@bbortt/owl",
   "description": "GIT hooks made easy.",
-  "version": "1.0.0-4",
+  "version": "1.0.0",
   "license": "MIT",
   "bin": {
     "owl": "src/index.js"
@@ -27,6 +27,7 @@
   "keywords": [
     "git",
     "hook",
-    "hooks"
+    "hooks",
+    "owl"
   ]
 }
