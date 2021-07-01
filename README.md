@@ -21,23 +21,17 @@
 
 # Installation
 
-Once downloaded you need to initialize the hook and create a configuration. Follow the steps below, and you will be good
-to go in seconds!
-
-## Scripts
-
-### Automated
-
-Add `@bbortt/owl` and `@bbortt/owl-autoinstall` at the same time. The `postinstall` script in the second package will
-take care of installing the scripts in `.owl`.
-
-### Manual
-
-Add `@bbortt/owl` via `npm` or `yarn` and execute the installation command in order to set up the hooks:
+Once downloaded you need to initialize the hook and create a configuration. Add `@bbortt/owl` via `npm` or `yarn` and
+execute the installation command in order to set up the hooks:
 
 ```shell
 owl install
 ```
+
+## For Future use
+
+Add `"prepare": "node projects/core/src install",` to your `scripts`, so future users will have Owl automatically
+installed.
 
 ## Initialization
 
@@ -100,7 +94,9 @@ Adds a hook by type into any found configuration file. E.g.
 the [`.owlrc.json`](https://github.com/bbortt/owl/blob/release/.owlrc.json) was completed
 using `owl add pre-commit "ngx pretty-quick --staged"`.
 
-Supported hooks are: [ `applypatch-msg`, `commit-msg`, `fsmonitor-watchman`, `post-update`, `pre-applypatch`, `pre-commit`, `pre-merge-commit`, `pre-push`, `pre-rebase`, `pre-receive`, `prepare-commit-msg`, `update` ].
+Supported hooks
+are: [ `applypatch-msg`, `commit-msg`, `fsmonitor-watchman`, `post-update`, `pre-applypatch`, `pre-commit`, `pre-merge-commit`, `pre-push`, `pre-rebase`, `pre-receive`, `prepare-commit-msg`, `update` ]
+.
 
 # How Does It Work?
 
