@@ -16,7 +16,7 @@
 
 const { cosmiconfigSync } = require('cosmiconfig');
 
-export const SUPPORTED_HOOKS = [
+const SUPPORTED_HOOKS = [
   'applypatch-msg',
   'commit-msg',
   'fsmonitor-watchman',
@@ -51,3 +51,5 @@ if (!SUPPORTED_HOOKS.includes(cmd)) {
 }
 
 printHooks(config.hooks, cmd, args[0]);
+
+module.exports = [SUPPORTED_HOOKS];
