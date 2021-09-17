@@ -16,6 +16,7 @@
 
 const { cosmiconfigSync } = require('cosmiconfig');
 
+const SUPPORTED_CMDS = ['add', 'init', 'install'];
 const SUPPORTED_HOOKS = [
   'applypatch-msg',
   'commit-msg',
@@ -46,8 +47,13 @@ config.hooks = config.hooks || {};
 const printHooks = (hooks, hookType, separator) =>
   console.log((hooks[hookType] || []).join(separator));
 
+if (SUPPORTED_CMDS.includes(cmd)) {
+  // Not a hook
+  return;
+}
+
 if (!SUPPORTED_HOOKS.includes(cmd)) {
-  throw new Error(`owl - invalid hook configuration`);
+  throw new Error(`owl - invalid hook configuration: ${cmd}`);
 }
 
 printHooks(config.hooks, cmd, args[0]);
