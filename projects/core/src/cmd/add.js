@@ -5,22 +5,7 @@ const { spawnSync } = require('child_process');
 const { cosmiconfigSync } = require('cosmiconfig');
 const cosmiconfig = cosmiconfigSync('owl').search();
 
-const { DEFAULT_ENCODING } = require('../common/constants');
-
-const supportedHooks = [
-  'applypatch-msg',
-  'commit-msg',
-  'fsmonitor-watchman',
-  'post-update',
-  'pre-applypatch',
-  'pre-commit',
-  'pre-merge-commit',
-  'pre-push',
-  'pre-rebase',
-  'pre-receive',
-  'prepare-commit-msg',
-  'update',
-];
+const { DEFAULT_ENCODING, SUPPORTED_HOOKS } = require('../bin/owl');
 
 const ensureGitHookInstalled = (hooksDir, hookType) => {
   const hookFile = resolve(hooksDir, hookType);
@@ -75,12 +60,12 @@ module.exports = args => {
 
   try {
     const hookType = args[0];
-    if (supportedHooks.includes(hookType)) {
+    if (SUPPORTED_HOOKS.includes(hookType)) {
       addHook(config.hooks, hookType, args[1]);
       ensureGitHookInstalled(hooksDir, hookType);
     } else {
       throw new Error(
-        `owl - invalid hook type '${hookType}'! supported are: ${supportedHooks.join()}`,
+        `owl - invalid hook type '${hookType}'! supported are: ${SUPPORTED_HOOKS.join()}`,
       );
     }
 

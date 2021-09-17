@@ -15,6 +15,22 @@
  */
 
 const { cosmiconfigSync } = require('cosmiconfig');
+
+export const SUPPORTED_HOOKS = [
+  'applypatch-msg',
+  'commit-msg',
+  'fsmonitor-watchman',
+  'post-update',
+  'pre-applypatch',
+  'pre-commit',
+  'pre-merge-commit',
+  'pre-push',
+  'pre-rebase',
+  'pre-receive',
+  'prepare-commit-msg',
+  'update',
+];
+
 const cosmiconfig = cosmiconfigSync('owl').search();
 
 if (!cosmiconfig) {
@@ -30,10 +46,8 @@ config.hooks = config.hooks || {};
 const printHooks = (hooks, hookType, separator) =>
   console.log((hooks[hookType] || []).join(separator));
 
-switch (cmd) {
-  case 'pre-commit':
-    printHooks(config.hooks, cmd, args[0]);
-    break;
-  default:
-    throw new Error(`owl - invalid hook configuration`);
+if (!SUPPORTED_HOOKS.includes(cmd)) {
+  throw new Error(`owl - invalid hook configuration`);
 }
+
+printHooks(config.hooks, cmd, args[0]);
