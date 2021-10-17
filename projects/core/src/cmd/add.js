@@ -5,7 +5,8 @@ const { spawnSync } = require('child_process');
 const { cosmiconfigSync } = require('cosmiconfig');
 const cosmiconfig = cosmiconfigSync('owl').search();
 
-const { DEFAULT_ENCODING, SUPPORTED_HOOKS } = require('../bin/owl');
+const { DEFAULT_ENCODING } = require('../common/constants');
+const { SUPPORTED_HOOKS } = require('../bin/owl');
 
 const ensureGitHookInstalled = (hooksDir, hookType) => {
   const hookFile = resolve(hooksDir, hookType);

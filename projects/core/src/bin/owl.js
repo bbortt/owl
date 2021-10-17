@@ -58,4 +58,6 @@ if (!SUPPORTED_HOOKS.includes(cmd)) {
 
 printHooks(config.hooks, cmd, args[0]);
 
-module.exports = [SUPPORTED_HOOKS];
+module.exports = {
+  SUPPORTED_HOOKS,
+};
