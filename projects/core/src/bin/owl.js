@@ -32,6 +32,10 @@ const SUPPORTED_HOOKS = [
   'update',
 ];
 
+module.exports = {
+  SUPPORTED_HOOKS,
+};
+
 const cosmiconfig = cosmiconfigSync('owl').search();
 
 if (!cosmiconfig) {
@@ -57,7 +61,3 @@ if (!SUPPORTED_HOOKS.includes(cmd)) {
 }
 
 printHooks(config.hooks, cmd, args[0]);
-
-module.exports = {
-  SUPPORTED_HOOKS,
-};
